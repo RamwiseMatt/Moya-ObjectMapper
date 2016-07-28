@@ -18,7 +18,7 @@ public extension ObservableType where E == Response {
 	/// If the conversion fails, the signal errors.
 	public func mapObject<T: Mappable>(type: T.Type, keyPath: String? = nil) -> Observable<T> {
 		return flatMap { response -> Observable<T> in
-			return Observable.just(try response.mapObject(T, withKeyPath: keyPath))
+			return Observable.just(try response.mapObject(type, withKeyPath: keyPath))
 		}
 	}
 	
@@ -27,7 +27,7 @@ public extension ObservableType where E == Response {
 	/// If the conversion fails, the signal errors.
 	public func mapArray<T: Mappable>(type: T.Type, keyPath: String? = nil) -> Observable<[T]> {
 		return flatMap { response -> Observable<[T]> in
-			return Observable.just(try response.mapArray(T, withKeyPath: keyPath))
+			return Observable.just(try response.mapArray(type, withKeyPath: keyPath))
 		}
 	}
 }
